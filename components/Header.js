@@ -6,11 +6,11 @@ function Header() {
   const router = useRouter();
   const cartItemTotal = useSelector((state) => state.cart.item.cartItems);
   return (
-    <div className="flex items-center text-white text-sm font-semibold bg-[#131921]">
+    <div className="flex items-center text-white text-sm py-2 font-semibold bg-[#131921]">
       <img
         onClick={() => router.push('/')}
-        className="w-[130px] flex-[0.1] cursor-pointer"
-        src="http://media.corporate-ir.net/media_files/IROL/17/176060/Oct18/Amazon%20logo.PNG"
+        className="text-white w-[110px] flex-[0.1] cursor-pointer"
+        src="https://i.pinimg.com/originals/47/b7/bd/47b7bdac4285ee24654ca7d68cf06351.png"
         alt=""
       />
       <div className="flex-[0.15]">location</div>

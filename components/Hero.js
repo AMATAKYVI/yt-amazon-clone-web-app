@@ -87,6 +87,7 @@ function Hero() {
             <div
               className="z-10 cursor-pointer rounded-md mx-auto bg-white w-[320px] min-h-[380px] border border-gray-100 py-5 px-3"
               key={item.id}
+              onClick={() => handleAddToCart(item)}
             >
               <div>
                 <img
@@ -139,6 +140,7 @@ function Hero() {
             <div
               className="z-10 cursor-pointer rounded-md bg-white mx-auto w-[360px] min-h-[450px] border border-gray-100 py-5 px-3"
               key={item.id}
+              onClick={() => handleAddToCart(item)}
             >
               <div>
                 <img
