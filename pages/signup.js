@@ -222,7 +222,8 @@ function SignUp() {
             {/* or else if it all true it will hide all the validation error */}
             {Object.entries(passwordShowValidation)
               .map((item) => item[1] === true)
-              .every((item) => item == true) ? (
+              .every((item) => item == true) ||
+            passwordInputValue.length === 0 ? (
               ''
             ) : (
               <div className="text-xs tracking-wide">

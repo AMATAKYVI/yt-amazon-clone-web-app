@@ -1,15 +1,29 @@
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
 function Header() {
   const router = useRouter();
   const cartItemTotal = useSelector((state) => state.cart.item.cartItems);
+  const [userInformation, setUserInformation] = useState({
+    name: '',
+  });
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
         // has user
+        const userRef = doc(db, 'user', user.uid);
+        const userSnap = await getDoc(userRef);
+        if (userSnap.exists()) {
+          setUserInformation((prev) => {
+            return { ...prev, name: userSnap?.data().name };
+          });
+          console.log('user is exist', userSnap.data());
+        } else {
+          console.log('user is not exist');
+        }
         console.log(user);
         console.log('log in');
       } else {
@@ -18,6 +32,7 @@ function Header() {
       }
     });
   }, []);
+  console.log(userInformation.name);
   return (
     <div className="flex items-center text-white text-sm py-2 font-semibold bg-[#131921]">
       <img
@@ -55,9 +70,20 @@ function Header() {
       <div className="flex flex-[0.4] justify-center px-2 gap-10 items-center">
         <div
           className="cursor-pointer hover:text-gray-300 transition-all duration-300"
-          onClick={() => router.push('/login')}
+          onClick={() => {
+            if (userInformation.name.length !== 0) {
+              router.push('/userinformation');
+            } else {
+              router.push('/login');
+            }
+          }}
         >
-          <p className="text-xs text-gray-300">Hello, Sign In</p>
+          <p className="text-xs text-gray-300">
+            Hello,{' '}
+            {userInformation.name.length !== 0
+              ? userInformation.name
+              : 'Sign In'}
+          </p>
           <p>Account & Info</p>
         </div>
         <div className="cursor-pointer hover:text-gray-300 transition-all duration-300">

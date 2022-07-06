@@ -6,7 +6,6 @@ import { addItemToCart } from '../store/cartSlice';
 function Hero() {
   const dispatch = useDispatch();
   const cartItem = useSelector((state) => state.cart.item.cartItems);
-  console.log(cartItem);
   const handleAddToCart = (product) => {
     dispatch(
       addItemToCart({
