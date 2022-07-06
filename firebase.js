@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore/lite';
 import { getAuth } from 'firebase/auth';
-import { getDatabase } from 'firebase/database/';
+import { getDatabase } from 'firebase/database';
 const firebaseConfig = {
   apiKey: 'AIzaSyDwnQDIn-JRNMHv5PkpnS8ViU9cEsgedSo',
   authDomain: 'yt--app.firebaseapp.com',

@@ -1,53 +1,53 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { validate } from 'email-validator';
-var passwordValidator = require('password-validator');
-var schema = new passwordValidator();
-schema
-  .is()
-  .min(8)
-  .is()
-  .max(100)
-  .has()
-  .uppercase()
-  .has()
-  .lowercase()
-  .has()
-  .digits(2)
-  .has()
-  .not()
-  .spaces()
-  .is()
-  .not()
-  .oneOf(['12345', 'qweqweqwe', 'asdasdasd']);
-function checkUppercase(str) {
-  for (var i = 0; i < str.length; i++) {
-    if (
-      str.charAt(i) == str.charAt(i).toUpperCase() &&
-      str.charAt(i).match(/[a-z]/i)
-    ) {
-      return true;
-    }
-  }
-  return false;
-}
-function checkLowercase(str) {
-  for (var i = 0; i < str.length; i++) {
-    if (
-      str.charAt(i) == str.charAt(i).toLowerCase() &&
-      str.charAt(i).match(/[a-z]/i)
-    ) {
-      return true;
-    }
-  }
-  return false;
-}
-function hasWhiteSpace(s) {
-  return /\s/g.test(s);
-}
-function hasNumber(myString) {
-  return /\d/.test(myString);
-}
+// var passwordValidator = require('password-validator');
+// var schema = new passwordValidator();
+// schema
+//   .is()
+//   .min(8)
+//   .is()
+//   .max(100)
+//   .has()
+//   .uppercase()
+//   .has()
+//   .lowercase()
+//   .has()
+//   .digits(2)
+//   .has()
+//   .not()
+//   .spaces()
+//   .is()
+//   .not()
+//   .oneOf(['12345', 'qweqweqwe', 'asdasdasd']);
+// function checkUppercase(str) {
+//   for (var i = 0; i < str.length; i++) {
+//     if (
+//       str.charAt(i) == str.charAt(i).toUpperCase() &&
+//       str.charAt(i).match(/[a-z]/i)
+//     ) {
+//       return true;
+//     }
+//   }
+//   return false;
+// }
+// function checkLowercase(str) {
+//   for (var i = 0; i < str.length; i++) {
+//     if (
+//       str.charAt(i) == str.charAt(i).toLowerCase() &&
+//       str.charAt(i).match(/[a-z]/i)
+//     ) {
+//       return true;
+//     }
+//   }
+//   return false;
+// }
+// function hasWhiteSpace(s) {
+//   return /\s/g.test(s);
+// }
+// function hasNumber(myString) {
+//   return /\d/.test(myString);
+// }
 function Login() {
   // get input value EMAIL and PASSWORD
   const [emailInputValue, setEmailInputValue] = useState('');
@@ -61,82 +61,82 @@ function Login() {
     hasDigit: false,
   });
   const router = useRouter();
-  useEffect(() => {
-    if (passwordInputValue) {
-      if (passwordInputValue.length === 8) {
-        setPasswordShowValidation((prev) => {
-          return { ...prev, hasEightLength: true };
-        });
-      } else if (passwordInputValue.length < 8) {
-        setPasswordShowValidation((prev) => {
-          return { ...prev, hasEightLength: false };
-        });
-      }
-      if (checkUppercase(passwordInputValue)) {
-        setPasswordShowValidation((prev) => {
-          return { ...prev, hasUpperCase: true };
-        });
-      } else {
-        setPasswordShowValidation((prev) => {
-          return { ...prev, hasUpperCase: false };
-        });
-      }
-      if (checkLowercase(passwordInputValue)) {
-        setPasswordShowValidation((prev) => {
-          return { ...prev, hasLowerCase: true };
-        });
-      } else {
-        setPasswordShowValidation((prev) => {
-          return { ...prev, hasLowerCase: false };
-        });
-      }
-      if (hasWhiteSpace(passwordInputValue)) {
-        setPasswordShowValidation((prev) => {
-          return { ...prev, hasWhiteSpace: true };
-        });
-      } else {
-        setPasswordShowValidation((prev) => {
-          return { ...prev, hasWhiteSpace: false };
-        });
-      }
-      if (hasNumber(passwordInputValue)) {
-        setPasswordShowValidation((prev) => {
-          return { ...prev, hasDigit: true };
-        });
-      } else {
-        setPasswordShowValidation((prev) => {
-          return { ...prev, hasDigit: false };
-        });
-      }
-    } else {
-      setPasswordShowValidation((prev) => {
-        return {
-          hasEightLength: false,
-          hasUpperCase: false,
-          hasLowerCase: false,
-          hasWhiteSpace: false,
-          hasDigit: false,
-        };
-      });
-    }
-  }, [passwordInputValue]);
+  // useEffect(() => {
+  //   if (passwordInputValue) {
+  //     if (passwordInputValue.length === 8) {
+  //       setPasswordShowValidation((prev) => {
+  //         return { ...prev, hasEightLength: true };
+  //       });
+  //     } else if (passwordInputValue.length < 8) {
+  //       setPasswordShowValidation((prev) => {
+  //         return { ...prev, hasEightLength: false };
+  //       });
+  //     }
+  //     if (checkUppercase(passwordInputValue)) {
+  //       setPasswordShowValidation((prev) => {
+  //         return { ...prev, hasUpperCase: true };
+  //       });
+  //     } else {
+  //       setPasswordShowValidation((prev) => {
+  //         return { ...prev, hasUpperCase: false };
+  //       });
+  //     }
+  //     if (checkLowercase(passwordInputValue)) {
+  //       setPasswordShowValidation((prev) => {
+  //         return { ...prev, hasLowerCase: true };
+  //       });
+  //     } else {
+  //       setPasswordShowValidation((prev) => {
+  //         return { ...prev, hasLowerCase: false };
+  //       });
+  //     }
+  //     if (hasWhiteSpace(passwordInputValue)) {
+  //       setPasswordShowValidation((prev) => {
+  //         return { ...prev, hasWhiteSpace: true };
+  //       });
+  //     } else {
+  //       setPasswordShowValidation((prev) => {
+  //         return { ...prev, hasWhiteSpace: false };
+  //       });
+  //     }
+  //     if (hasNumber(passwordInputValue)) {
+  //       setPasswordShowValidation((prev) => {
+  //         return { ...prev, hasDigit: true };
+  //       });
+  //     } else {
+  //       setPasswordShowValidation((prev) => {
+  //         return { ...prev, hasDigit: false };
+  //       });
+  //     }
+  //   } else {
+  //     setPasswordShowValidation((prev) => {
+  //       return {
+  //         hasEightLength: false,
+  //         hasUpperCase: false,
+  //         hasLowerCase: false,
+  //         hasWhiteSpace: false,
+  //         hasDigit: false,
+  //       };
+  //     });
+  //   }
+  // }, [passwordInputValue]);
   // function handle submit form sign in
   const handleSubmitInput = async (e) => {
     e.preventDefault();
-    const email = validate(emailInputValue);
-    const pass = schema.validate(passwordInputValue);
+    // const email = validate(emailInputValue);
+    // const pass = schema.validate(passwordInputValue);
     // email vailidation
-    if (email) {
-      console.log('email is valid');
-    } else {
-      console.log('email is not valid');
-    }
-    // password validation
-    if (pass) {
-      console.log('password is valid');
-    } else {
-      console.log('password is not valid');
-    }
+    // if (email) {
+    //   console.log('email is valid');
+    // } else {
+    //   console.log('email is not valid');
+    // }
+    // // password validation
+    // if (pass) {
+    //   console.log('password is valid');
+    // } else {
+    //   console.log('password is not valid');
+    // }
   };
 
   return (

@@ -1,10 +1,23 @@
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-
+import { auth } from '../firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 function Header() {
   const router = useRouter();
   const cartItemTotal = useSelector((state) => state.cart.item.cartItems);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // has user
+        console.log(user);
+        console.log('log in');
+      } else {
+        //no user
+        console.log('not log in');
+      }
+    });
+  }, []);
   return (
     <div className="flex items-center text-white text-sm py-2 font-semibold bg-[#131921]">
       <img
