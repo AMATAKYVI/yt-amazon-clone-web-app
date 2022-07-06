@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import NumberFormat from 'react-number-format';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +11,7 @@ import {
 } from '../store/cartSlice';
 
 function Cart() {
+  const router = useRouter();
   const cartItem = useSelector((state) => state.cart.item.cartItems);
   const dispatch = useDispatch();
   const handleAdjustUp = (product) => {
@@ -34,8 +36,8 @@ function Cart() {
         alt=""
         className="h-[300px] w-full object-contain"
       />
-      <div className="flex  mt-2">
-        <div className=" w-[55%] border min-h-[400px] px-10 py-5 mx-10">
+      <div className=" bg-gray-100   mt-2">
+        <div className="  border min-h-[400px] px-10 py-5 mx-10">
           <h1 className="font-semibold text-3xl border-b-2 pb-5">
             Your shopping cart
           </h1>
@@ -140,35 +142,38 @@ function Cart() {
                 })}
               </div>
             )}
-          </div>
-        </div>
-        <div className="w-[38%]  h-fit  bg-gray-100 rounded-md border px-10 py-10 mx-10">
-          <h1 className="font-semibold text-3xl">Checkout</h1>
-          <div className="flex items-center gap-5  mt-5">
-            <span>Total Amount: </span>
-            <NumberFormat
-              className="text-md foo font-semibold"
-              value={cartItem
-                .reduce((prev, curr) => prev + curr.totalPrice, 0)
-                .toFixed(2)}
-              displayType={'text'}
-              thousandSeparator={true}
-              prefix={'$'}
-              renderText={(value, props) => <div {...props}>{value}</div>}
-            />
-          </div>
-          <div className="flex py-5 gap-2 items-center">
-            <h1>Promote Code:</h1>
-            <input
-              type="text"
-              name=""
-              className="py-2 outline-none px-4 rounded-md text-gray-600"
-              id=""
-              placeholder="Promote Code..."
-            />
-          </div>
-          <div className="bg-amber-400 py-2 px-3 text-center rounded-md">
-            <button>Proceed to Checkout</button>
+          </div>{' '}
+          <div className="   rounded-md border px-10 py-10 mx-10">
+            <h1 className="font-semibold text-3xl">Checkout</h1>
+            <div className="flex items-center gap-5  mt-5">
+              <span>Total Amount: </span>
+              <NumberFormat
+                className="text-md foo font-semibold"
+                value={cartItem
+                  .reduce((prev, curr) => prev + curr.totalPrice, 0)
+                  .toFixed(2)}
+                displayType={'text'}
+                thousandSeparator={true}
+                prefix={'$'}
+                renderText={(value, props) => <div {...props}>{value}</div>}
+              />
+            </div>
+            <div className="flex py-5 gap-2 items-center">
+              <h1>Promote Code:</h1>
+              <input
+                type="text"
+                name=""
+                className="py-2 outline-none px-4 rounded-md text-gray-600"
+                id=""
+                placeholder="Promote Code..."
+              />
+            </div>
+            <div
+              onClick={() => router.push('/checkout')}
+              className="bg-amber-400 py-2 px-3 text-center rounded-md cursor-pointer w-[20%]"
+            >
+              <button>Proceed to Checkout</button>
+            </div>
           </div>
         </div>
       </div>
